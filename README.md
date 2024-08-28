@@ -14,10 +14,15 @@
 ```bash
 type $env:USERPROFILE\.ssh\id_rsa.pub | ssh <ip & domain> "cat >> .ssh/authorized_keys"
 ```
-&emsp;&emsp;example（在没有authorized_keys文件下）:
+&emsp;&emsp;example（没有authorized_keys文件）:
 ```mySQL
-type $env:USERPROFILE\.ssh\id_rsa.pub | ssh admind@192.168.10.22 "mkdir .ssh;touch .ssh/authorized_keys;cat >> .ssh/authorized_keys"
+type $env:USERPROFILE\.ssh\id_rsa.pub | ssh root@10.10.1.4 "mkdir .ssh;touch .ssh/authorized_keys;cat >> .ssh/authorized_keys"
 ```
+&emsp;&emsp;example（有authorized_keys文件）:
+```
+type $env:USERPROFILE\.ssh\id_rsa.pub | ssh root@10.10.1.4 "cat >> .ssh/authorized_keys"
+```
+
 &emsp;&emsp;$env：这是一个Windows PowerShell中用于访问环境变量的特殊变量。
 
 &emsp;&emsp;authorized_keys 是一个用于SSH（Secure Shell）身份验证的文件，存储了被信任的公钥列表（该验证文件也可以命名为其它名称，前提是修改ssh_config文件的相关信息）。
