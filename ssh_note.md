@@ -3,7 +3,7 @@
 
 &emsp;&emsp;对于vscode_ssh连接开发，可能都会出现一些奇奇怪怪的问题，但只要依据报错出现的 `log` 基本上都能够解决。<br>
 &emsp;&emsp;写笔记时遇到过的：XHR failed；~\.ssh\config文件权限问题；远程主机ssh的TCP端口转发。<br>
-&emsp;&emsp;具体解决步骤就不记录了，太冗杂，根据 `log` 解决即可。
+&emsp;&emsp;具体解决步骤不记录，太冗杂，根据 `log` 解决即可。
 
 
 ***
