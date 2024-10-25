@@ -55,7 +55,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub username@remote_host
 
 ***
 ***
-对于本机需要配置验证私钥文件的内容（密钥在非默认位置时需要）：
+&emsp;&emsp;对于本机需要配置验证私钥文件的内容（密钥在非默认位置时需要）：
 配置文件： `~\.ssh\config`，的 `IdentityFile`
 
 ```bash
@@ -65,21 +65,22 @@ Host 192.168.10.10	# 别名&备注
   IdentityFile C:\Users\a3071\.ssh\key_rsa	# 需要验证的私钥文件
 ```
 
-对于远程主机需要支持公钥配对的配置：
+&emsp;&emsp;对于远程主机需要支持公钥配对的配置：
 远程服务器的 SSH 配置文件（通常位于`/etc/ssh/sshd_config`）中，确保以下两个配置项未被注释:
 ```bash
 PubkeyAuthentication yes
 AuthorizedKeysFile     .ssh/authorized_keys
 ```
-windows的配置文件（与本次文章主题无关）：`C:\Windows\System32\OpenSSH\sshd_config_default`<br>
+&emsp;&emsp;windows的配置文件（与本次文章主题无关）：`C:\Windows\System32\OpenSSH\sshd_config_default`<br>
 
 <br>
 注释：
 
 &emsp;&emsp;Powershell 不支持ssh-copy-id命令，衍生出使用type命令的操作方法。
-&emsp;&emsp;Ssh-copy-id 局限于需要同时拥有密钥对。
-<br>
-其它（点睛）：
+
+&emsp;&emsp;ssh-copy-id 局限于需要同时拥有密钥对。
+
+&emsp;&emsp;其它（点睛）~
 &emsp;&emsp;生成密钥对：
 ```bash
 ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa
@@ -98,4 +99,4 @@ ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa
 -E （fingerprint_hash）：指定指纹哈希算法的类型。默认为SHA-256，但可以选择其他算法，如SHA-1和MD5。
 -C （comment）：为生成的密钥添加一个注释，用于标识该密钥的用途或所有者。
 ```
-不指定参数，只生成密钥对文件的话，一切以默认参数值为主。
+&emsp;&emsp;不指定参数，只生成密钥对文件的话，一切以默认参数值为主。
