@@ -7,7 +7,7 @@
 
 
 ***
-方法一：
+**方法一**：
 
 &emsp;&emsp;Windows powshell使用type命令：
 
@@ -28,14 +28,16 @@ type $env:USERPROFILE\.ssh\id_rsa.pub | ssh root@10.10.1.4 "cat >> .ssh/authoriz
 &emsp;&emsp;authorized_keys 是一个用于SSH（Secure Shell）身份验证的文件，存储了被信任的公钥列表（该验证文件也可以命名为其它名称，前提是修改ssh_config文件的相关信息）。
 
 <br>
-方法二：
+
+**方法二**：
 
 &emsp;&emsp;直接复制粘贴：
 
 &emsp;&emsp;创建一个authorized_keys文件在 ~/.ssh/ 目录下（如果没有的话），再通过复制粘贴将公钥写入到文件内；或者把公钥文件复制到远程主机通过追加（>>）的形式写入到文档。
 
 <br>
-方法三：
+
+**方法三**：
 
 &emsp;&emsp;在远程主机上执行命令：
 
@@ -48,33 +50,37 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub username@remote_host
 &emsp;&emsp;参数 -i 指定要使用的公钥文件；后面是当前用户及本机ip或域名。
 
 &emsp;&emsp;在进行写入时，私钥也会同时被调用，以验证公钥的完整性和正确性，没有或者不匹配的话则无法继续写入（局限性）。
+
+<br>
+
 ***
----
-对于本机需要配置验证私钥文件的内容（密钥在非默认位置时需要）：
+***
+&emsp;&emsp;对于本机需要配置验证私钥文件的内容（密钥在非默认位置时需要）：
 配置文件： `~\.ssh\config`，的 `IdentityFile`
 
 ```bash
-Host 192.168.10.10	# 别名&备注
+Host 192.168.10.10	# 别名&备注；连接时，在终端使用'ssh 别名'即可无密码快速登录远程主机。
   HostName 192.168.10.10	# 主机地址或域名
   User deng		# 用户名
   IdentityFile C:\Users\a3071\.ssh\key_rsa	# 需要验证的私钥文件
 ```
 
-对于远程主机需要支持公钥配对的配置：
+&emsp;&emsp;对于远程主机需要支持公钥配对的配置：
 远程服务器的 SSH 配置文件（通常位于`/etc/ssh/sshd_config`）中，确保以下两个配置项未被注释:
 ```bash
 PubkeyAuthentication yes
 AuthorizedKeysFile     .ssh/authorized_keys
 ```
-windows的配置文件（与本次文章主题无关）：`C:\Windows\System32\OpenSSH\sshd_config_default`<br>
+&emsp;&emsp;windows的配置文件（与本次文章主题无关）：`C:\Windows\System32\OpenSSH\sshd_config_default`<br>
 
 <br>
 注释：
 
 &emsp;&emsp;Powershell 不支持ssh-copy-id命令，衍生出使用type命令的操作方法。
-&emsp;&emsp;Ssh-copy-id 局限于需要同时拥有密钥对。
-<br>
-其它（点睛）：
+
+&emsp;&emsp;ssh-copy-id 局限于需要同时拥有密钥对。
+
+&emsp;&emsp;其它（点睛）~
 &emsp;&emsp;生成密钥对：
 ```bash
 ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa
@@ -93,4 +99,4 @@ ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa
 -E （fingerprint_hash）：指定指纹哈希算法的类型。默认为SHA-256，但可以选择其他算法，如SHA-1和MD5。
 -C （comment）：为生成的密钥添加一个注释，用于标识该密钥的用途或所有者。
 ```
-不指定参数，只生成密钥对文件的话，一切以默认参数值为主。
+&emsp;&emsp;不指定参数，只生成密钥对文件的话，一切以默认参数值为主。
