@@ -59,7 +59,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub username@remote_host
 配置文件： `~\.ssh\config`，的 `IdentityFile`
 
 ```bash
-Host 192.168.10.10	# 别名&备注
+Host 192.168.10.10	# 别名&备注；连接时，在终端使用'ssh 别名'即可无密码快速登录远程主机。
   HostName 192.168.10.10	# 主机地址或域名
   User deng		# 用户名
   IdentityFile C:\Users\a3071\.ssh\key_rsa	# 需要验证的私钥文件
